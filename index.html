@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOZHI - Clean Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#ffffff;
+  color:#333;
+  scroll-behavior:smooth;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  background:#ffffff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+  z-index:1000;
+}
+
+nav h2{
+  color:#ff4d4d;
+  font-weight:600;
+}
+
+.nav-links{
+  display:flex;
+  gap:20px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#555;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#ff4d4d;
+}
+
+.menu-toggle{
+  display:none;
+  font-size:1.5rem;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  background:linear-gradient(to bottom,#ffffff,#fff5f5);
+}
+
+.hero h1{
+  font-size:3rem;
+  color:#ff4d4d;
+}
+
+.hero p{
+  margin-top:15px;
+  font-size:1.1rem;
+  color:#666;
+}
+
+/* SECTIONS */
+section{
+  padding:100px 20px;
+  text-align:center;
+}
+
+h2{
+  margin-bottom:30px;
+  color:#ff4d4d;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#ffffff;
+  padding:25px;
+  border-radius:12px;
+  transition:0.4s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(255,77,77,0.2);
+}
+
+/* SCROLL ANIMATION */
+.hidden{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#fafafa;
+  color:#888;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .nav-links{
+    position:absolute;
+    top:60px;
+    right:0;
+    background:#ffffff;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    display:none;
+    padding:20px 0;
+    box-shadow:0 10px 20px rgba(0,0,0,0.05);
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .hero h1{
+    font-size:2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2>🐔 CHICK</h2>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="game.html">Game 🎮</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <h1>WELCOME TO CHICK PAGE</h1>
+    <p>Clean • Creative • Modern Web Solutions</p>
+  </div>
+</div>
+
+<section id="about" class="hidden">
+  <div class="container">
+    <h2>About</h2>
+    <p>
+      KOZHI builds clean, modern and responsive websites with
+      simplicity and performance in mind.
+    </p>
+  </div>
+</section>
+
+<section id="services" class="hidden">
+  <div class="container">
+    <h2>Services</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>Responsive and fast website creation.</p>
+      </div>
+      <div class="card">
+        <h3>UI Design</h3>
+        <p>Minimal and modern interface design.</p>
+      </div>
+      <div class="card">
+        <h3>Deployment</h3>
+        <p>GitHub Pages hosting setup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="hidden">
+  <div class="container">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Portfolio Website</h3>
+        <p>Modern clean white themed website.</p>
+      </div>
+      <div class="card">
+        <h3>Landing Page</h3>
+        <p>Startup-style minimal landing page.</p>
+      </div>
+      <div class="card">
+        <h3>Java Mini Project</h3>
+        <p>Console based student application.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 KOZHI | Clean White Edition 🤍
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
